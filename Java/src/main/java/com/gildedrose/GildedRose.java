@@ -12,6 +12,8 @@ class GildedRose {
             int delta;
             switch (item.name) {
                 case "Sulfuras, Hand of Ragnaros":
+                    delta = 0;
+                    item.updateQuality(delta);
                     break;
 
                 case "Aged Brie":

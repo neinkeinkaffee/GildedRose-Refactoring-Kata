@@ -15,6 +15,7 @@ public class Item {
     }
 
     public void updateQuality(int delta) {
+        if (delta == 0) return;
         if (delta < 0) {
             this.quality = Math.max(0, this.quality + delta);
         } else {
