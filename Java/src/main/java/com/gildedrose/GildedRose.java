@@ -9,22 +9,19 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            int sellInDelta = determineSellInDelta(item);
-            item.updateSellIn(sellInDelta);
-            int qualityDelta = determineQualityDelta(item);
-            item.updateQuality(qualityDelta);
+            item.updateSellIn(sellInDelta(item));
+            item.updateQuality(qualityDelta(item));
         }
     }
 
-    private static int determineSellInDelta(Item item) {
-        int sellInDelta = 0;
+    private static int sellInDelta(Item item) {
         if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
-            sellInDelta = -1;
+            return -1;
         }
-        return sellInDelta;
+        return 0;
     }
 
-    private static int determineQualityDelta(Item item) {
+    private static int qualityDelta(Item item) {
         switch (item.name) {
             case "Sulfuras, Hand of Ragnaros":
                 return 0;
@@ -39,14 +36,13 @@ class GildedRose {
 
     private static int determineBackstageUpdateDelta(Item item) {
         assert item.name.equals("Backstage passes to a TAFKAL80ETC concert");
-        int updateDelta = -item.quality;
         if (item.sellIn >= 10) {
-            updateDelta = 1;
+            return 1;
         } else if (item.sellIn >= 5) {
-            updateDelta = 2;
+            return 2;
         } else if (item.sellIn >= 0) {
-            updateDelta = 3;
+            return 3;
         }
-        return updateDelta;
+        return -item.quality;
     }
 }
