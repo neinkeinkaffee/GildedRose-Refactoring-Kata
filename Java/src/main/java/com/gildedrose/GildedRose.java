@@ -9,12 +9,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            switch (item.name) {
-                case "Sulfuras, Hand of Ragnaros":
-                    break;
-                default:
-                    item.updateSellIn(-1);
-
+            if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
+                item.updateSellIn(-1);
             }
 
             int updateDelta;
