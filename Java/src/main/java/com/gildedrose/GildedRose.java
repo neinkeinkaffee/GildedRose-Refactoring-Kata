@@ -9,47 +9,44 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            int delta;
+            int updateDelta;
             switch (item.name) {
                 case "Sulfuras, Hand of Ragnaros":
-                    delta = 0;
-                    item.updateQuality(delta);
+                    updateDelta = 0;
                     break;
 
                 case "Aged Brie":
                     item.updateSellIn(-1);
 
-                    delta = 1;
+                    updateDelta = 1;
                     if (item.sellIn < 0) {
-                        delta = 2;
+                        updateDelta = 2;
                     }
-                    item.updateQuality(delta);
                     break;
 
                 case "Backstage passes to a TAFKAL80ETC concert":
                     item.updateSellIn(-1);
 
-                    delta = -item.quality;
+                    updateDelta = -item.quality;
                     if (item.sellIn >= 10) {
-                        delta = 1;
+                        updateDelta = 1;
                     } else if (item.sellIn >= 5) {
-                        delta = 2;
+                        updateDelta = 2;
                     } else if (item.sellIn >= 0) {
-                        delta = 3;
+                        updateDelta = 3;
                     }
-                    item.updateQuality(delta);
                     break;
 
                 default:
                     item.updateSellIn(-1);
 
-                    delta = -1;
+                    updateDelta = -1;
                     if (item.sellIn < 0) {
-                        delta = -2;
+                        updateDelta = -2;
                     }
-                    item.updateQuality(delta);
                     break;
             }
+            item.updateQuality(updateDelta);
         }
     }
 }
