@@ -8,47 +8,47 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            switch (items[i].name) {
+        for (Item item : items) {
+            switch (item.name) {
                 case "Sulfuras, Hand of Ragnaros":
                     break;
 
                 case "Aged Brie":
-                    items[i].sellIn -= 1;
-                    if (items[i].sellIn < 0) {
-                        items[i].increaseQuality();
-                        items[i].increaseQuality();
+                    item.sellIn -= 1;
+                    if (item.sellIn < 0) {
+                        item.increaseQuality();
+                        item.increaseQuality();
                     } else {
-                        items[i].increaseQuality();
+                        item.increaseQuality();
                     }
                     break;
 
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    items[i].sellIn -= 1;
+                    item.sellIn -= 1;
 
-                    items[i].increaseQuality();
+                    item.increaseQuality();
 
-                    if (items[i].sellIn < 10) {
-                        items[i].increaseQuality();
+                    if (item.sellIn < 10) {
+                        item.increaseQuality();
                     }
 
-                    if (items[i].sellIn < 5) {
-                        items[i].increaseQuality();
+                    if (item.sellIn < 5) {
+                        item.increaseQuality();
                     }
 
-                    if (items[i].sellIn < 0) {
-                        items[i].quality = 0;
+                    if (item.sellIn < 0) {
+                        item.quality = 0;
                     }
                     break;
 
                 default:
-                    items[i].sellIn -= 1;
+                    item.sellIn -= 1;
 
-                    if (items[i].sellIn < 0) {
-                        items[i].decreaseQuality();
-                        items[i].decreaseQuality();
+                    if (item.sellIn < 0) {
+                        item.decreaseQuality();
+                        item.decreaseQuality();
                     } else {
-                        items[i].decreaseQuality();
+                        item.decreaseQuality();
                     }
                     break;
             }
