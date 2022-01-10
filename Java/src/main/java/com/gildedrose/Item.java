@@ -16,18 +16,10 @@ public class Item {
 
     public void updateQuality(int delta) {
         if (delta < 0) {
-            decreaseQuality(-delta);
+            this.quality = Math.max(0, this.quality + delta);
         } else {
-            increaseQuality(delta);
+            this.quality = Math.min(50, this.quality + delta);
         }
-    }
-
-    public void decreaseQuality(int delta) {
-        this.quality = Math.max(0, this.quality - delta);
-    }
-
-    public void increaseQuality(int delta) {
-        this.quality = Math.min(50, this.quality + delta);
     }
 
    @Override
