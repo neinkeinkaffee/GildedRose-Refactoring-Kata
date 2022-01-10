@@ -23,7 +23,11 @@ class GildedRose {
         }
 
         private int sellInDelta() {
-            return "Sulfuras, Hand of Ragnaros".equals(this.item.name) ? 0 : -1;
+            switch (this.item.name) {
+                case "Sulfuras, Hand of Ragnaros":
+                    return 0;
+            }
+            return -1;
         }
 
         private int qualityDelta() {
@@ -34,9 +38,8 @@ class GildedRose {
                     return this.item.sellIn >= 0 ? 1 : 2;
                 case "Backstage passes to a TAFKAL80ETC concert":
                     return backstageTicketQualityDelta();
-                default:
-                    return this.item.sellIn >= 0 ? -1 : -2;
             }
+            return this.item.sellIn >= 0 ? -1 : -2;
         }
 
         private int backstageTicketQualityDelta() {
