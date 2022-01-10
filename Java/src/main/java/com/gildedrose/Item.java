@@ -16,7 +16,7 @@ public class Item {
 
     public void decreaseQuality() {
         if (this.quality > 0) {
-            this.quality -= this.quality;
+            this.quality -= 1;
         }
     }
 
