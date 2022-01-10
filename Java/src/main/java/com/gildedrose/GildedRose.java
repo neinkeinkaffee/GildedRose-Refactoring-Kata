@@ -9,40 +9,46 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            item.updateSellIn(sellInDelta(item));
-            item.updateQuality(qualityDelta(item));
+            ItemUpdatePolicy policy = new ItemUpdatePolicy(item);
+            item.updateSellIn(policy.sellInDelta());
+            item.updateQuality(policy.qualityDelta());
         }
     }
 
-    private static int sellInDelta(Item item) {
-        if ("Sulfuras, Hand of Ragnaros".equals(item.name)) {
-            return 0;
-        }
-        return -1;
-    }
+    private static class ItemUpdatePolicy {
+        private final Item item;
 
-    private static int qualityDelta(Item item) {
-        switch (item.name) {
-            case "Sulfuras, Hand of Ragnaros":
-                return 0;
-            case "Aged Brie":
-                return item.sellIn >= 0 ? 1 : 2;
-            case "Backstage passes to a TAFKAL80ETC concert":
-                return determineBackstageUpdateDelta(item);
-            default:
-                return item.sellIn >= 0 ? -1 : -2;
+        public ItemUpdatePolicy(Item item) {
+            this.item = item;
         }
-    }
 
-    private static int determineBackstageUpdateDelta(Item item) {
-        assert item.name.equals("Backstage passes to a TAFKAL80ETC concert");
-        if (item.sellIn >= 10) {
-            return 1;
-        } else if (item.sellIn >= 5) {
-            return 2;
-        } else if (item.sellIn >= 0) {
-            return 3;
+        private int sellInDelta() {
+            return "Sulfuras, Hand of Ragnaros".equals(this.item.name) ? 0 : -1;
         }
-        return -item.quality;
+
+        private int qualityDelta() {
+            switch (this.item.name) {
+                case "Sulfuras, Hand of Ragnaros":
+                    return 0;
+                case "Aged Brie":
+                    return this.item.sellIn >= 0 ? 1 : 2;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    return backstageTicketQualityDelta();
+                default:
+                    return this.item.sellIn >= 0 ? -1 : -2;
+            }
+        }
+
+        private int backstageTicketQualityDelta() {
+            assert this.item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+            if (this.item.sellIn >= 10) {
+                return 1;
+            } else if (this.item.sellIn >= 5) {
+                return 2;
+            } else if (this.item.sellIn >= 0) {
+                return 3;
+            }
+            return -this.item.quality;
+        }
     }
 }
