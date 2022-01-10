@@ -15,10 +15,10 @@ class GildedRose {
     }
 
     private static int sellInDelta(Item item) {
-        if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
-            return -1;
+        if ("Sulfuras, Hand of Ragnaros".equals(item.name)) {
+            return 0;
         }
-        return 0;
+        return -1;
     }
 
     private static int qualityDelta(Item item) {
