@@ -26,18 +26,22 @@ class GildedRose {
                 case "Backstage passes to a TAFKAL80ETC concert":
                     item.sellIn -= 1;
 
-                    item.increaseQuality();
-
-                    if (item.sellIn < 10) {
+                    if (item.sellIn >= 10) {
                         item.increaseQuality();
-                    }
-
-                    if (item.sellIn < 5) {
+                    } else {
                         item.increaseQuality();
-                    }
 
-                    if (item.sellIn < 0) {
-                        item.quality = 0;
+                        if (item.sellIn < 10) {
+                            item.increaseQuality();
+                        }
+
+                        if (item.sellIn < 5) {
+                            item.increaseQuality();
+                        }
+
+                        if (item.sellIn < 0) {
+                            item.quality = 0;
+                        }
                     }
                     break;
 
