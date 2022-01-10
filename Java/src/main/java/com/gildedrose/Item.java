@@ -15,15 +15,19 @@ public class Item {
     }
 
     public void decreaseQuality() {
-        if (this.quality > 0) {
-            this.quality -= 1;
-        }
+        decreaseQuality(1);
+    }
+
+    public void decreaseQuality(int delta) {
+        this.quality = Math.max(0, this.quality - delta);
     }
 
     public void increaseQuality() {
-        if (this.quality < 50) {
-            this.quality += 1;
-        }
+        increaseQuality(1);
+    }
+
+    public void increaseQuality(int delta) {
+        this.quality = Math.min(50, this.quality + delta);
     }
 
    @Override
