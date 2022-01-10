@@ -9,6 +9,14 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
+            switch (item.name) {
+                case "Sulfuras, Hand of Ragnaros":
+                    break;
+                default:
+                    item.updateSellIn(-1);
+
+            }
+
             int updateDelta;
             switch (item.name) {
                 case "Sulfuras, Hand of Ragnaros":
@@ -16,8 +24,6 @@ class GildedRose {
                     break;
 
                 case "Aged Brie":
-                    item.updateSellIn(-1);
-
                     updateDelta = 2;
                     if (item.sellIn >= 0) {
                         updateDelta = 1;
@@ -25,8 +31,6 @@ class GildedRose {
                     break;
 
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    item.updateSellIn(-1);
-
                     updateDelta = -item.quality;
                     if (item.sellIn >= 10) {
                         updateDelta = 1;
@@ -38,8 +42,6 @@ class GildedRose {
                     break;
 
                 default:
-                    item.updateSellIn(-1);
-
                     updateDelta = -2;
                     if (item.sellIn >= 0) {
                         updateDelta = -1;
