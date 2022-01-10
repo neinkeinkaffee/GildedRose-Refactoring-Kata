@@ -18,9 +18,9 @@ class GildedRose {
                 case "Aged Brie":
                     item.updateSellIn(-1);
 
-                    updateDelta = 1;
-                    if (item.sellIn < 0) {
-                        updateDelta = 2;
+                    updateDelta = 2;
+                    if (item.sellIn >= 0) {
+                        updateDelta = 1;
                     }
                     break;
 
@@ -40,9 +40,9 @@ class GildedRose {
                 default:
                     item.updateSellIn(-1);
 
-                    updateDelta = -1;
-                    if (item.sellIn < 0) {
-                        updateDelta = -2;
+                    updateDelta = -2;
+                    if (item.sellIn >= 0) {
+                        updateDelta = -1;
                     }
                     break;
             }
