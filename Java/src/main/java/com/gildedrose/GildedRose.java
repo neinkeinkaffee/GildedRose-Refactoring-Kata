@@ -9,12 +9,19 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
-                item.updateSellIn(-1);
-            }
+            int sellInDelta = determineSellInDelta(item);
+            item.updateSellIn(sellInDelta);
             int qualityDelta = determineQualityDelta(item);
             item.updateQuality(qualityDelta);
         }
+    }
+
+    private static int determineSellInDelta(Item item) {
+        int sellInDelta = 0;
+        if (!"Sulfuras, Hand of Ragnaros".equals(item.name)) {
+            sellInDelta = -1;
+        }
+        return sellInDelta;
     }
 
     private static int determineQualityDelta(Item item) {
