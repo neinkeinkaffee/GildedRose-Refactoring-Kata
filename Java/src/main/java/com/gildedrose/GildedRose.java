@@ -28,20 +28,15 @@ class GildedRose {
 
                     if (item.sellIn >= 10) {
                         item.increaseQuality();
-                    } else {
+                    } else if (item.sellIn >= 5) {
                         item.increaseQuality();
-
-                        if (item.sellIn < 10) {
-                            item.increaseQuality();
-                        }
-
-                        if (item.sellIn < 5) {
-                            item.increaseQuality();
-                        }
-
-                        if (item.sellIn < 0) {
-                            item.quality = 0;
-                        }
+                        item.increaseQuality();
+                    } else if (item.sellIn >= 0) {
+                        item.increaseQuality();
+                        item.increaseQuality();
+                        item.increaseQuality();
+                    } else {
+                        item.quality = 0;
                     }
                     break;
 
