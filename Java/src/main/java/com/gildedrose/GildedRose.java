@@ -17,9 +17,9 @@ class GildedRose {
                     item.sellIn -= 1;
 
                     if (item.sellIn >= 0) {
-                        item.increaseQuality(1);
+                        item.updateQuality(1);
                     } else {
-                        item.increaseQuality(2);
+                        item.updateQuality(2);
                     }
                     break;
 
@@ -27,11 +27,11 @@ class GildedRose {
                     item.sellIn -= 1;
 
                     if (item.sellIn >= 10) {
-                        item.increaseQuality(1);
+                        item.updateQuality(1);
                     } else if (item.sellIn >= 5) {
-                        item.increaseQuality(2);
+                        item.updateQuality(2);
                     } else if (item.sellIn >= 0) {
-                        item.increaseQuality(3);
+                        item.updateQuality(3);
                     } else {
                         item.quality = 0;
                     }
@@ -41,9 +41,9 @@ class GildedRose {
                     item.sellIn -= 1;
 
                     if (item.sellIn >= 0) {
-                        item.decreaseQuality(1);
+                        item.updateQuality(-1);
                     } else {
-                        item.decreaseQuality(2);
+                        item.updateQuality(-2);
                     }
                     break;
             }

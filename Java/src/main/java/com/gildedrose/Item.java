@@ -14,6 +14,14 @@ public class Item {
         this.quality = quality;
     }
 
+    public void updateQuality(int delta) {
+        if (delta < 0) {
+            decreaseQuality(-delta);
+        } else {
+            increaseQuality(delta);
+        }
+    }
+
     public void decreaseQuality(int delta) {
         this.quality = Math.max(0, this.quality - delta);
     }
