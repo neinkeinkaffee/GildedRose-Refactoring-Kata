@@ -15,10 +15,11 @@ class GildedRose {
 
                 case "Aged Brie":
                     item.sellIn -= 1;
-                    if (item.sellIn < 0) {
-                        item.increaseQuality();
+
+                    if (item.sellIn >= 0) {
                         item.increaseQuality();
                     } else {
+                        item.increaseQuality();
                         item.increaseQuality();
                     }
                     break;
@@ -43,10 +44,10 @@ class GildedRose {
                 default:
                     item.sellIn -= 1;
 
-                    if (item.sellIn < 0) {
-                        item.decreaseQuality();
+                    if (item.sellIn >= 0) {
                         item.decreaseQuality();
                     } else {
+                        item.decreaseQuality();
                         item.decreaseQuality();
                     }
                     break;
