@@ -22,6 +22,10 @@ public class Item {
         }
     }
 
+    public void updateSellIn(int delta) {
+        this.sellIn += delta;
+    }
+
    @Override
    public String toString() {
         return this.name + ", " + this.sellIn + ", " + this.quality;
