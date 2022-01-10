@@ -14,16 +14,8 @@ public class Item {
         this.quality = quality;
     }
 
-    public void decreaseQuality() {
-        decreaseQuality(1);
-    }
-
     public void decreaseQuality(int delta) {
         this.quality = Math.max(0, this.quality - delta);
-    }
-
-    public void increaseQuality() {
-        increaseQuality(1);
     }
 
     public void increaseQuality(int delta) {
