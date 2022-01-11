@@ -14,7 +14,7 @@ public class Item {
         this.quality = quality;
     }
 
-    public void updateQuality(int delta) {
+    public void changeQualityByDelta(int delta) {
         if (delta == 0) return;
         if (delta < 0) {
             this.quality = Math.max(0, this.quality + delta);
@@ -23,7 +23,7 @@ public class Item {
         }
     }
 
-    public void updateSellIn(int delta) {
+    public void changeSellInByDelta(int delta) {
         this.sellIn += delta;
     }
 

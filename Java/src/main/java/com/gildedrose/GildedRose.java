@@ -10,8 +10,8 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             ItemUpdatePolicy policy = new ItemUpdatePolicy(item);
-            item.updateSellIn(policy.sellInDelta());
-            item.updateQuality(policy.qualityDelta());
+            item.changeSellInByDelta(policy.sellInDelta());
+            item.changeQualityByDelta(policy.qualityDelta());
         }
     }
 
