@@ -1,13 +1,9 @@
 package com.gildedrose;
 
 class GildedRose {
-    private final QualityChangeRatePolicy qualityPolicy;
-    private final SalesPolicy salesPolicy;
     Item[] items;
 
     public GildedRose(Item[] items) {
-        qualityPolicy = new QualityChangeRatePolicy();
-        salesPolicy = new SalesPolicy();
         this.items = items;
     }
 
@@ -19,51 +15,62 @@ class GildedRose {
     }
 
     private void updateSellIn(Item item) {
-        item.sellIn += salesPolicy.delta(item);
+        switch (item.name) {
+            case "Sulfuras, Hand of Ragnaros":
+                return;
+        }
+        item.sellIn -= 1;
     }
 
     private void updateQuality(Item item) {
-        int delta = qualityPolicy.delta(item);
-        if (delta == 0) return;
-        if (delta < 0) {
-            item.quality = Math.max(0, item.quality + delta);
-        } else {
-            item.quality = Math.min(50, item.quality + delta);
+        switch (item.name) {
+            case "Sulfuras, Hand of Ragnaros":
+                break;
+            case "Backstage passes to a TAFKAL80ETC concert":
+                if (item.sellIn < 0) {
+                    item.quality = 0;
+                } else {
+                    if (item.sellIn < 5) {
+                        incrementQuality(item);
+                    }
+                    if (item.sellIn < 10) {
+                        incrementQuality(item);
+                    }
+                    incrementQuality(item);
+                }
+                break;
+            case "Aged Brie":
+                incrementQuality(item);
+                if (item.sellIn < 0) {
+                    incrementQuality(item);
+                }
+                break;
+            case "Conjured Mana Cake":
+                decrementQuality(item);
+                decrementQuality(item);
+                if (item.sellIn < 0) {
+                    decrementQuality(item);
+                    decrementQuality(item);
+                }
+                break;
+            default:
+                decrementQuality(item);
+                if (item.sellIn < 0) {
+                    decrementQuality(item);
+                }
+                break;
         }
     }
 
-    private static class QualityChangeRatePolicy {
-        private int delta(Item item) {
-            switch (item.name) {
-                case "Sulfuras, Hand of Ragnaros":
-                    return 0;
-                case "Backstage passes to a TAFKAL80ETC concert":
-                    return item.sellIn < 0 ? -item.quality : backstagePassPreConcertQualityDelta(item);
-                case "Aged Brie":
-                    return item.sellIn < 0 ? 2 : 1;
-                case "Conjured Mana Cake":
-                    return item.sellIn < 0 ? -4 : -2;
-            }
-            return item.sellIn < 0 ? -2 : -1;
-        }
-
-        private int backstagePassPreConcertQualityDelta(Item item) {
-            if (item.sellIn >= 10) {
-                return 1;
-            } else if (item.sellIn >= 5) {
-                return 2;
-            }
-            return 3; // item.sellIn >= 0
+    private void incrementQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality += 1;
         }
     }
 
-    private class SalesPolicy {
-        private int delta(Item item) {
-            switch (item.name) {
-                case "Sulfuras, Hand of Ragnaros":
-                    return 0;
-            }
-            return -1;
+    private void decrementQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality -= 1;
         }
     }
 }
