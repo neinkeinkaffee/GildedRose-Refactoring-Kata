@@ -34,10 +34,12 @@ class GildedRose {
             switch (this.item.name) {
                 case "Sulfuras, Hand of Ragnaros":
                     return 0;
-                case "Aged Brie":
-                    return this.item.sellIn < 0 ? 2 : 1;
                 case "Backstage passes to a TAFKAL80ETC concert":
                     return backstageTicketQualityDelta();
+                case "Aged Brie":
+                    return this.item.sellIn < 0 ? 2 : 1;
+                case "Conjured Mana Cake":
+                    return this.item.sellIn < 0 ? -4 : -2;
             }
             return this.item.sellIn < 0 ? -2 : -1;
         }

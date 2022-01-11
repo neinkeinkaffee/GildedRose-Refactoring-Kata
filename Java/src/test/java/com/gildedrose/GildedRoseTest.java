@@ -22,7 +22,9 @@ class GildedRoseTest {
         "Backstage passes to a TAFKAL80ETC concert, 0, 10, -1, 0", // backstage passes after concert
         "'Sulfuras, Hand of Ragnaros', 0, 80, 0, 80", // Sulfuras never sell and their quality is constant
         "'Sulfuras, Hand of Ragnaros', -1, 80, -1, 80", // Sulfuras never sell and their quality is constant
-        //"Conjured Mana Cake, 3, 6, 2, 4", // Conjured items deteriorate twice as fast
+        "Conjured Mana Cake, 3, 6, 2, 4", // Conjured items deteriorate twice as fast
+        "Conjured Mana Cake, 1, 6, 0, 4", // Conjured items deteriorate twice as fast
+        "Conjured Mana Cake, 0, 6, -1, 2", // Conjured items deteriorate twice as fast
     })
     void testUpdateQuality(String name, int sellIn, int quality, int updatedSellIn, int updatedQuality) {
         Item[] items = new Item[] { new Item(name, sellIn, quality) };
