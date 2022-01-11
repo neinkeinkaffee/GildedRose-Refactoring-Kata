@@ -45,7 +45,6 @@ class GildedRose {
         }
 
         private int backstagePassPreConcertQualityDelta() {
-            assert this.item.name.equals("Backstage passes to a TAFKAL80ETC concert");
             if (this.item.sellIn >= 10) {
                 return 1;
             } else if (this.item.sellIn >= 5) {
