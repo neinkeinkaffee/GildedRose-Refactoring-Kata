@@ -35,7 +35,7 @@ class GildedRose {
                 case "Sulfuras, Hand of Ragnaros":
                     return 0;
                 case "Backstage passes to a TAFKAL80ETC concert":
-                    return backstageTicketQualityDelta();
+                    return this.item.sellIn < 0 ? -this.item.quality : backstagePassPreConcertQualityDelta();
                 case "Aged Brie":
                     return this.item.sellIn < 0 ? 2 : 1;
                 case "Conjured Mana Cake":
@@ -44,16 +44,14 @@ class GildedRose {
             return this.item.sellIn < 0 ? -2 : -1;
         }
 
-        private int backstageTicketQualityDelta() {
+        private int backstagePassPreConcertQualityDelta() {
             assert this.item.name.equals("Backstage passes to a TAFKAL80ETC concert");
             if (this.item.sellIn >= 10) {
                 return 1;
             } else if (this.item.sellIn >= 5) {
                 return 2;
-            } else if (this.item.sellIn >= 0) {
-                return 3;
             }
-            return -this.item.quality;
+            return 3; // this.item.sellIn >= 0
         }
     }
 }

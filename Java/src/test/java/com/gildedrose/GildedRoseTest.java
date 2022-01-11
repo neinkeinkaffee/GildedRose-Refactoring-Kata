@@ -20,6 +20,7 @@ class GildedRoseTest {
         "Backstage passes to a TAFKAL80ETC concert, 10, 10, 9, 12", // backstage passes where 5 < sellIn <= 10
         "Backstage passes to a TAFKAL80ETC concert, 12, 10, 11, 11", // backstage passes where sellIn > 10
         "Backstage passes to a TAFKAL80ETC concert, 0, 10, -1, 0", // backstage passes after concert
+        "Backstage passes to a TAFKAL80ETC concert, -2, 0, -3, 0", // backstage passes after concert
         "'Sulfuras, Hand of Ragnaros', 0, 80, 0, 80", // Sulfuras never sell and their quality is constant
         "'Sulfuras, Hand of Ragnaros', -1, 80, -1, 80", // Sulfuras never sell and their quality is constant
         "Conjured Mana Cake, 3, 6, 2, 4", // Conjured items deteriorate twice as fast
