@@ -35,11 +35,11 @@ class GildedRose {
                 case "Sulfuras, Hand of Ragnaros":
                     return 0;
                 case "Aged Brie":
-                    return this.item.sellIn >= 0 ? 1 : 2;
+                    return this.item.sellIn < 0 ? 2 : 1;
                 case "Backstage passes to a TAFKAL80ETC concert":
                     return backstageTicketQualityDelta();
             }
-            return this.item.sellIn >= 0 ? -1 : -2;
+            return this.item.sellIn < 0 ? -2 : -1;
         }
 
         private int backstageTicketQualityDelta() {
