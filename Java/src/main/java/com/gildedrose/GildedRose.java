@@ -13,8 +13,22 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            item.changeSellInByDelta(salesPolicy.delta(item));
-            item.changeQualityByDelta(qualityPolicy.delta(item));
+            updateSellIn(item);
+            updateQuality(item);
+        }
+    }
+
+    private void updateSellIn(Item item) {
+        item.sellIn += salesPolicy.delta(item);
+    }
+
+    private void updateQuality(Item item) {
+        int delta = qualityPolicy.delta(item);
+        if (delta == 0) return;
+        if (delta < 0) {
+            item.quality = Math.max(0, item.quality + delta);
+        } else {
+            item.quality = Math.min(50, item.quality + delta);
         }
     }
 

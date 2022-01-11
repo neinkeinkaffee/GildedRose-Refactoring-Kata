@@ -14,21 +14,8 @@ public class Item {
         this.quality = quality;
     }
 
-    public void changeQualityByDelta(int delta) {
-        if (delta == 0) return;
-        if (delta < 0) {
-            this.quality = Math.max(0, this.quality + delta);
-        } else {
-            this.quality = Math.min(50, this.quality + delta);
-        }
-    }
-
-    public void changeSellInByDelta(int delta) {
-        this.sellIn += delta;
-    }
-
-   @Override
-   public String toString() {
-        return this.name + ", " + this.sellIn + ", " + this.quality;
+    @Override
+    public String toString() {
+         return this.name + ", " + this.sellIn + ", " + this.quality;
     }
 }
