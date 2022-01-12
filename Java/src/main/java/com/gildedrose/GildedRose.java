@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Arrays;
+
 class GildedRose {
     Item[] items;
 
@@ -8,101 +10,25 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            updateOneItem(item);
-        }
+        Arrays.stream(items).forEach(this::updateOneItem);
     }
 
     private void updateOneItem(Item item) {
-        ItemUpdateStrategy strategy = determineUpdateStrategy(item);
-        strategy.updateSellIn(item);
-        strategy.updateQuality(item);
+        ItemUpdater strategy = determineUpdateStrategy(item);
+        strategy.update(item);
     }
 
-    private ItemUpdateStrategy determineUpdateStrategy(Item item) {
+    private ItemUpdater determineUpdateStrategy(Item item) {
         switch (item.name) {
             case "Sulfuras, Hand of Ragnaros":
-                return new LegendaryStrategy();
+                return new LegendaryUpdater();
             case "Backstage passes to a TAFKAL80ETC concert":
-                return new BackstagePassStrategy();
+                return new BackstagePassUpdater();
             case "Aged Brie":
-                return new BrieStrategy();
+                return new BrieUpdater();
             case "Conjured Mana Cake":
-                return new ConjuredStrategy();
+                return new ConjuredUpdater();
         }
-        return new ItemUpdateStrategy();
-    }
-
-    private class LegendaryStrategy extends ItemUpdateStrategy {
-        public void updateSellIn(Item item) {
-        }
-
-        public void updateQuality(Item item) {
-        }
-    }
-
-    private class BackstagePassStrategy extends ItemUpdateStrategy {
-        public void updateQuality(Item item) {
-            if (item.sellIn < 0) {
-                item.quality = 0;
-            } else {
-                if (item.sellIn < 5) {
-                    incrementQuality(item);
-                }
-                if (item.sellIn < 10) {
-                    incrementQuality(item);
-                }
-                incrementQuality(item);
-            }
-        }
-    }
-
-    private class BrieStrategy extends ItemUpdateStrategy {
-        public void updateQuality(Item item) {
-            incrementQuality(item);
-            if (item.sellIn < 0) {
-                incrementQuality(item);
-            }
-        }
-    }
-
-    private class ConjuredStrategy extends ItemUpdateStrategy {
-        public void updateQuality(Item item) {
-            decrementQuality(item);
-            decrementQuality(item);
-            if (item.sellIn < 0) {
-                decrementQuality(item);
-                decrementQuality(item);
-            }
-        }
-    }
-
-    private class ItemUpdateStrategy {
-        public void updateSellIn(Item item) {
-            decrementSellIn(item);
-        }
-
-        public void updateQuality(Item item) {
-            decrementQuality(item);
-            if (item.sellIn < 0) {
-                decrementQuality(item);
-            }
-        }
-    }
-
-    private void decrementSellIn(Item item) {
-        item.sellIn -= 1;
-    }
-
-    private void incrementQuality(Item item) {
-        if (item.quality < 50) {
-            item.quality += 1;
-        }
-    }
-
-    private void decrementQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality -= 1;
-        }
+        return new ItemUpdater();
     }
 }
