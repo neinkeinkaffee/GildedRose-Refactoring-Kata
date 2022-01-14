@@ -14,11 +14,11 @@ class GildedRose {
     }
 
     private void updateOneItem(Item item) {
-        ItemUpdater strategy = determineUpdateStrategy(item);
-        strategy.update(item);
+        ItemUpdater updater = determineUpdater(item);
+        updater.update(item);
     }
 
-    private ItemUpdater determineUpdateStrategy(Item item) {
+    private ItemUpdater determineUpdater(Item item) {
         switch (item.name) {
             case "Sulfuras, Hand of Ragnaros":
                 return new LegendaryUpdater();
