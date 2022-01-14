@@ -14,11 +14,11 @@ class GildedRose {
     }
 
     private void updateOneItem(Item item) {
-        ItemUpdater updater = determineUpdater(item);
+        ItemUpdater updater = createUpdater(item);
         updater.update(item);
     }
 
-    private ItemUpdater determineUpdater(Item item) {
+    private ItemUpdater createUpdater(Item item) {
         switch (item.name) {
             case "Sulfuras, Hand of Ragnaros":
                 return new LegendaryUpdater();
