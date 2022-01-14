@@ -14,21 +14,23 @@ class GildedRose {
     }
 
     private void updateOneItem(Item item) {
-        ItemUpdater updater = createUpdater(item);
-        updater.update(item);
+        UpdatePolicy updatePolicy = createUpdatePolicy(item);
+        updatePolicy.update();
     }
 
-    private ItemUpdater createUpdater(Item item) {
+    private UpdatePolicy createUpdatePolicy(Item item) {
+        ItemUpdater itemUpdater = new ItemUpdater(item);
         switch (item.name) {
             case "Sulfuras, Hand of Ragnaros":
-                return new LegendaryUpdater();
+                return new LegendaryPolicy(itemUpdater);
             case "Backstage passes to a TAFKAL80ETC concert":
-                return new BackstagePassUpdater();
+                return new BackstagePassPolicy(itemUpdater);
             case "Aged Brie":
-                return new BrieUpdater();
+                return new BriePolicy(itemUpdater);
             case "Conjured Mana Cake":
-                return new ConjuredUpdater();
+                return new ConjuredPolicy(itemUpdater);
         }
-        return new ItemUpdater();
+        return new DefaultPolicy(itemUpdater);
     }
+
 }
